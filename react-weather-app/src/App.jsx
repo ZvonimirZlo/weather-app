@@ -42,7 +42,7 @@ function App() {
   };
 
   return (
-    <>
+    <div className='container'>
       <button onClick={getWeatherData}>Get Weather Data</button>
       <Select
         options={countries}
@@ -64,14 +64,21 @@ function App() {
         value={selectedCity}
         onChange={handleSelectedCity}
       />
-      <h3>Temperature: {weatherData?.current?.temperature_2m} °C</h3>
-      <h3>apparent_temperature: {weatherData?.current?.apparent_temperature} °C</h3>
-      <h3>Pressure: {weatherData?.current?.surface_pressure} hPa</h3>
-      <h3>Relative humidity: {weatherData?.current?.relative_humidity_2m} %</h3>
-      <h3>Wind speed: {weatherData?.current?.wind_speed_10m} km/h</h3>
-      <h3>Rain: {weatherData?.current?.rain} mm</h3>
-      <h3>cloud_cover: {weatherData?.current?.cloud_cover} %</h3>
-    </>
+      {weatherData ? (
+        <>
+          <h1>{selectedCity?.value?.name}</h1>
+          <h3>Temperature: {weatherData?.current?.temperature_2m} °C</h3>
+          <h3>apparent_temperature: {weatherData?.current?.apparent_temperature} °C</h3>
+          <h3>Pressure: {weatherData?.current?.surface_pressure} hPa</h3>
+          <h3>Relative humidity: {weatherData?.current?.relative_humidity_2m} %</h3>
+          <h3>Wind speed: {weatherData?.current?.wind_speed_10m} km/h</h3>
+          <h3>Rain: {weatherData?.current?.rain} mm</h3>
+          <h3>cloud_cover: {weatherData?.current?.cloud_cover} %</h3>
+        </>
+      ) : (
+        <p>Select Location</p>
+      )}
+    </div>
   )
 }
 

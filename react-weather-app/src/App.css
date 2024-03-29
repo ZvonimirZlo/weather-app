@@ -8,3 +8,11 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+button {
+  height: 39px;
+}
+
+.container {
+  width: 300px;
+}
