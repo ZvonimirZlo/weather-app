@@ -67,7 +67,7 @@ function App() {
       {weatherData ? (
         <>
           <h1>{selectedCity?.value?.name}</h1>
-          <h3>Temperature: {weatherData?.current?.temperature_2m} °C</h3>
+          <h3 className='temperature'>{weatherData?.current?.temperature_2m} °C</h3>
           <h3>apparent_temperature: {weatherData?.current?.apparent_temperature} °C</h3>
           <h3>Pressure: {weatherData?.current?.surface_pressure} hPa</h3>
           <h3>Relative humidity: {weatherData?.current?.relative_humidity_2m} %</h3>
