@@ -12,9 +12,9 @@ function App() {
 
   const getWeatherData = (e) => {
     e.preventDefault();
-    fetch(`https://api.open-meteo.com/v1/forecast?latitude=${selectedCity?.value?.latitude}&longitude=${selectedCity?.value?.longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,rain,showers,snowfall,weather_code,cloud_cover,pressure_msl,surface_pressure,wind_speed_10m,wind_direction_10m,wind_gusts_10m&hourly=temperature_2m,relative_humidity_2m,rain,visibility,wind_speed_10m&timezone=GMT`)
-      .then(res => res.json())
-      .then(data => setWeatherData(data))
+    fetch(`https://api.open-meteo.com/v1/forecast?latitude=${selectedCity?.value?.latitude}&longitude=${selectedCity?.value?.longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,weather_code,rain,cloud_cover,surface_pressure,wind_speed_10m&hourly=temperature_2m&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,daylight_duration,uv_index_max&timezone=GMT`)
+    .then(res => res.json())
+    .then(data => setWeatherData(data))
   }
   console.log(weatherData);
 
@@ -42,42 +42,65 @@ function App() {
   };
 
   return (
-    <div className='container'>
-      <button onClick={getWeatherData}>Get Weather Data</button>
-      <Select
-        options={countries}
-        value={selectedCountry}
-        onChange={handleSelectedCountry}
-      />
+ <div className='container'> 
+  <Select 
+    styles={{
+      control: (baseStyles, state) => ({
+        ...baseStyles,
+        borderColor: state.isFocused ? 'grey' : 'white',
+        backgroundColor: 'black',
+        // color: 'white',
+        fontWeight: 'bold',
+      }),
+    }}
+    options={countries}
+    value={selectedCountry}
+    onChange={handleSelectedCountry}
+  />
 
-      <Select
-        options={City.getCitiesOfCountry(
-          selectedCountry?.value?.isoCode
-        ).map((city) => ({
-          value: {
-            latitude: city.latitude,
-            longitude: city.longitude,
-            name: city.name,
-          },
-          label: city.name,
-        }))}
-        value={selectedCity}
-        onChange={handleSelectedCity}
-      />
+  <Select 
+      styles={{
+        control: (baseStyles, state) => ({
+          ...baseStyles,
+          borderColor: state.isFocused ? 'gray' : 'white',
+          backgroundColor: 'black',
+          fontWeight: 'bold',
+        }),
+      }}
+    options={City.getCitiesOfCountry(
+      selectedCountry?.value?.isoCode
+    ).map((city) => ({
+      value: {
+        latitude: city.latitude,
+        longitude: city.longitude,
+        name: city.name,
+      },
+      label: city.name,
+    }))}
+    value={selectedCity}
+    onChange={handleSelectedCity}
+  />
+
+<button onClick={getWeatherData}>Get Weather</button>
+     <div className="data"> 
       {weatherData ? (
         <>
-          <h1>{selectedCity?.value?.name}</h1>
-          <h3 className='temperature'>{weatherData?.current?.temperature_2m} °C</h3>
-          <h3>apparent_temperature: {weatherData?.current?.apparent_temperature} °C</h3>
-          <h3>Pressure: {weatherData?.current?.surface_pressure} hPa</h3>
-          <h3>Relative humidity: {weatherData?.current?.relative_humidity_2m} %</h3>
-          <h3>Wind speed: {weatherData?.current?.wind_speed_10m} km/h</h3>
-          <h3>Rain: {weatherData?.current?.rain} mm</h3>
-          <h3>cloud_cover: {weatherData?.current?.cloud_cover} %</h3>
+          <h2>{selectedCity?.value?.name}</h2>
+          <h4 className='temperature'>{weatherData?.current?.temperature_2m} °C</h4>
+          <h4>Temp min: {weatherData?.daily?.temperature_2m_min[0]} °C</h4>
+          <h4>Temp max: {weatherData?.daily?.temperature_2m_max[0]} °C</h4>
+          <h4>apparent_temperature: {weatherData?.current?.apparent_temperature} °C</h4>
+          <h4>Pressure: {weatherData?.current?.surface_pressure} hPa</h4>
+          <h4>Relative humidity: {weatherData?.current?.relative_humidity_2m} %</h4>
+          <h4>Wind speed: {weatherData?.current?.wind_speed_10m} km/h</h4>
+          <h4>UV Index: {weatherData?.daily?.uv_index_max[0]}</h4>
+          <h4>Rain: {weatherData?.current?.rain} mm</h4>
+          <h4>cloud_cover: {weatherData?.current?.cloud_cover} %</h4>
         </>
       ) : (
         <p>Select Location</p>
       )}
+    </div>
     </div>
   )
 }
