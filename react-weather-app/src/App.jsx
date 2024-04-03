@@ -2,14 +2,21 @@ import { useState, useEffect } from 'react';
 import Select from 'react-select';
 import { City, Country } from "country-state-city";
 import clear from './images/clear.jpg';
+import overcast from './images/overcast.jpg';
+import fog from './images/fog.jpg';
+import drizzle from './images/drizzle.jpg';
+import rain from './images/rain.jpg';
+import snow from './images/snow.jpg';
+import thunderstorm from './images/thunderstorm.jpg';
+
 
 function App() {
 
-  const [weatherData, setWeatherData] = useState(null);
+  const [weatherData, setWeatherData] = useState('');
   const [countries, setCountries] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState({});
   const [selectedCity, setSelectedCity] = useState({});
-  const [bg, setBg] = useState(clear);
+  const [bg, setBg] = useState(thunderstorm);
 
   const getWeatherData = () => {
     fetch(`https://api.open-meteo.com/v1/forecast?latitude=${selectedCity?.value?.latitude}&longitude=${selectedCity?.value?.longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,weather_code,rain,cloud_cover,surface_pressure,wind_speed_10m&hourly=temperature_2m&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,daylight_duration,uv_index_max&timezone=GMT`)
