@@ -1,6 +1,7 @@
 :root {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   line-height: 1.2;
+  --primary-color: rgb(16, 105, 98);
 }
 
 body {
@@ -39,7 +40,7 @@ div {
 button {
   margin: 20px;
   color: white;
-  background-color: rgb(16, 105, 98);
+  background-color: var(--primary-color);
   height: 40px;
   width: 8rem;
   border-radius: 25px;
@@ -50,7 +51,7 @@ button {
 button:hover {
   color: white;
   background-color: black;
-  box-shadow: 2px 2px 15px 2px rgb(16, 105, 98);
+  box-shadow: 2px 2px 15px 2px var(--primary-color);
 }
 
 .temperature {

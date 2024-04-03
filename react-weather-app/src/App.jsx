@@ -18,12 +18,13 @@ function App() {
   const [selectedCity, setSelectedCity] = useState({});
   const [bg, setBg] = useState(thunderstorm);
 
+  //fetching api
   const getWeatherData = () => {
     fetch(`https://api.open-meteo.com/v1/forecast?latitude=${selectedCity?.value?.latitude}&longitude=${selectedCity?.value?.longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,weather_code,rain,cloud_cover,surface_pressure,wind_speed_10m&hourly=temperature_2m&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,daylight_duration,uv_index_max&timezone=GMT`)
       .then(res => res.json())
       .then(data => setWeatherData(data))
   }
-  console.log(weatherData);
+  // console.log(weatherData);
 
   useEffect(() => {
     setCountries(
@@ -39,18 +40,45 @@ function App() {
     );
   }, []);
 
+  //handling country options
   const handleSelectedCountry = (option) => {
     setSelectedCountry(option);
-    setSelectedCity(null);
   };
 
+  //handling city options
   const handleSelectedCity = (option) => {
     setSelectedCity(option);
   };
 
 
+  //changing background image depending on WMO code
+  useEffect(() => {
+    const changeBg = () => {
+      let code = weatherData?.current?.weather_code;
+      if (code === 0) {
+        setBg(clear)
+      } else if (code >= 1 && code <= 3) {
+        setBg(overcast)
+      } else if (code >= 45 && code <= 48) {
+        setBg(fog)
+      } else if (code >= 51 && code <= 67) {
+        setBg(drizzle)
+      } else if (code >= 61 && code <= 67) {
+        setBg(rain)
+      } else if (code >= 71 && code <= 77) {
+        setBg(snow)
+      } else if (code >= 80 && code <= 86) {
+        setBg(rain)
+      } else {
+        setBg(thunderstorm)
+      }
+    }
+    changeBg()
+  }, [weatherData.current.weather_code]);
+
+
   return (
-    <div className="app" style={{backgroundImage: `url(${bg})`}}>
+    <div className="app" style={{ backgroundImage: `url(${bg})` }}>
       <div className='container'>
         <Select
           styles={{
@@ -90,8 +118,10 @@ function App() {
           value={selectedCity}
           onChange={handleSelectedCity}
         />
-
+        
+        {/* on click rendering weather data on the screen */}
         <button onClick={getWeatherData}>Get Weather</button>
+        
         <div className="data">
           {weatherData ? (
             <>
