@@ -1,7 +1,11 @@
 :root {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  /* line-height: 1; */
+  line-height: 1.2;
+}
 
+body {
+  padding: 0;
+  margin: 0;
 }
 
 div {
@@ -9,30 +13,44 @@ div {
   text-align: center;
 }
 
-body {
-  padding: 0;
-  margin: 0;
+.app {
+  width: 100%;
+  height: 100vh;
+  background-position: center;
+  background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: url(/src/images/sunny.png.jpg) center no-repeat fixed;
+  flex-direction: column;
+  animation: fadeInAnimation ease 1.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+  }
 }
 
 button {
-  margin-top: 20px;
+  margin: 20px;
   color: white;
   background-color: rgb(16, 105, 98);
   height: 40px;
   width: 8rem;
   border-radius: 25px;
   font-weight: bold;
+  transition: ease-in-out .2s;
 }
 
 button:hover {
   color: white;
   background-color: black;
   box-shadow: 2px 2px 15px 2px rgb(16, 105, 98);
-  transition: ease-in-out .2s;
 }
 
 .temperature {
@@ -43,7 +61,6 @@ button:hover {
 }
 
 .container {
-  margin-top: 40px;
   width: 40rem;
   height: 100%;
   border-radius: 10px;
@@ -55,7 +72,6 @@ button:hover {
 .data {
   color: white;
   background: transparent;
-  transition: ease-in .5s;
 }
 
 @media (max-width: 425px){
