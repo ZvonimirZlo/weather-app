@@ -6,6 +6,7 @@ import overcast from './images/overcast.jpg';
 import fog from './images/fog.jpg';
 import drizzle from './images/drizzle.jpg';
 import rain from './images/rain.jpg';
+import freezingRain from './images/freezingRain.jpg';
 import snow from './images/snow.jpg';
 import thunderstorm from './images/thunderstorm.jpg';
 
@@ -63,17 +64,29 @@ function App() {
         setBg(overcast);
         setDescription('Partly cloudy, overcast');
       } else if (code >= 45 && code <= 48) {
-        setBg(fog)
-      } else if (code >= 51 && code <= 67) {
-        setBg(drizzle)
-      } else if (code >= 61 && code <= 67) {
-        setBg(rain)
+        setBg(fog);
+        setDescription('Fog')
+      } else if (code >= 51 && code <= 55) {
+        setBg(drizzle);
+        setDescription('Drizzle')
+      } else if (code >= 56 && code <= 57) {
+        setBg(freezingRain);
+        setDescription('Freezing Drizzle')
+      } else if (code >= 66 && code <= 67) {
+        setBg(freezingRain);
+        setDescription('Freezing Rain');
       } else if (code >= 71 && code <= 77) {
-        setBg(snow)
-      } else if (code >= 80 && code <= 86) {
-        setBg(rain)
+        setBg(snow);
+        setDescription('Snow')
+      } else if (code >= 80 && code <= 82) {
+        setBg(rain);
+        setDescription('Rain showers')
+      } else if (code >= 85 && code <= 86) {
+        setBg(snow);
+        setDescription('Snow showers')
       } else {
-        setBg(thunderstorm)
+        setBg(thunderstorm);
+        setDescription('Thunderstorm')
       }
     }
     changeBg()
@@ -121,10 +134,10 @@ function App() {
           value={selectedCity}
           onChange={handleSelectedCity}
         />
-        
+
         {/* on click rendering weather data on the screen */}
         <button onClick={getWeatherData}>Get Weather</button>
-        
+
         <div className="data">
           {weatherData ? (
             <>
