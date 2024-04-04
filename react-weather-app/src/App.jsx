@@ -17,6 +17,7 @@ function App() {
   const [selectedCountry, setSelectedCountry] = useState({});
   const [selectedCity, setSelectedCity] = useState({});
   const [bg, setBg] = useState(thunderstorm);
+  const [description, setDescription] = useState('');
 
   //fetching api
   const getWeatherData = () => {
@@ -56,9 +57,11 @@ function App() {
     const changeBg = () => {
       let code = weatherData?.current?.weather_code;
       if (code === 0) {
-        setBg(clear)
+        setBg(clear);
+        setDescription('Clear')
       } else if (code >= 1 && code <= 3) {
-        setBg(overcast)
+        setBg(overcast);
+        setDescription('Partly cloudy, overcast');
       } else if (code >= 45 && code <= 48) {
         setBg(fog)
       } else if (code >= 51 && code <= 67) {
@@ -74,7 +77,7 @@ function App() {
       }
     }
     changeBg()
-  }, [weatherData.current.weather_code]);
+  }, [weatherData]);
 
 
   return (
@@ -126,16 +129,18 @@ function App() {
           {weatherData ? (
             <>
               <h2>{selectedCity?.value?.name}</h2>
-              <h4 className='temperature'>{weatherData?.current?.temperature_2m} °C</h4>
-              <h4>Feels Like: {weatherData?.current?.apparent_temperature} °C</h4>
-              <h4>Min: {weatherData?.daily?.temperature_2m_min[0]} °C</h4>
-              <h4>Max: {weatherData?.daily?.temperature_2m_max[0]} °C</h4>
-              <h4>Pressure: {weatherData?.current?.surface_pressure} hPa</h4>
-              <h4>Relative humidity: {weatherData?.current?.relative_humidity_2m} %</h4>
-              <h4>Wind speed: {weatherData?.current?.wind_speed_10m} km/h</h4>
-              <h4>UV Index: {weatherData?.daily?.uv_index_max[0]}</h4>
-              <h4>Rain: {weatherData?.current?.rain} mm</h4>
-              <h4>Cloud Cover: {weatherData?.current?.cloud_cover} %</h4>
+              <p className='temperature'>{weatherData?.current?.temperature_2m} °C </p>
+              <h2>{description}</h2>
+              <br></br>
+              <p>Feels Like: {weatherData?.current?.apparent_temperature} °C</p>
+              <p>Min: {weatherData?.daily?.temperature_2m_min[0]} °C</p>
+              <p>Max: {weatherData?.daily?.temperature_2m_max[0]} °C</p>
+              <p>Pressure: {weatherData?.current?.surface_pressure} hPa</p>
+              <p>Relative humidity: {weatherData?.current?.relative_humidity_2m} %</p>
+              <p>Wind speed: {weatherData?.current?.wind_speed_10m} km/h</p>
+              <p>UV Index: {weatherData?.daily?.uv_index_max[0]}</p>
+              <p>Rain: {weatherData?.current?.rain} mm</p>
+              <p>Cloud Cover: {weatherData?.current?.cloud_cover} %</p>
             </>
           ) : (false)}
         </div>
