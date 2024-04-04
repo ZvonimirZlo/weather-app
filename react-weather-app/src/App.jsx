@@ -72,6 +72,9 @@ function App() {
       } else if (code >= 56 && code <= 57) {
         setBg(freezingRain);
         setDescription('Freezing Drizzle')
+      }else if (code >= 61 && code <= 65) {
+          setBg(rain);
+          setDescription('Rain')
       } else if (code >= 66 && code <= 67) {
         setBg(freezingRain);
         setDescription('Freezing Rain');
