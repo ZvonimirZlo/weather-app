@@ -25,6 +25,7 @@ function App() {
     fetch(`https://api.open-meteo.com/v1/forecast?latitude=${selectedCity?.value?.latitude}&longitude=${selectedCity?.value?.longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,weather_code,rain,cloud_cover,surface_pressure,wind_speed_10m&hourly=temperature_2m&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,daylight_duration,uv_index_max&timezone=GMT`)
       .then(res => res.json())
       .then(data => setWeatherData(data))
+      .catch(error => console.log(error))
   }
   // console.log(weatherData);
 
@@ -148,9 +149,9 @@ function App() {
               <p className='temperature'>{weatherData?.current?.temperature_2m} °C </p>
               <h2>{description}</h2>
               <br></br>
+              <p className='min'>Min: {weatherData?.daily?.temperature_2m_min[0]} °C</p>
+              <p className='max'>Max: {weatherData?.daily?.temperature_2m_max[0]} °C</p>
               <p>Feels Like: {weatherData?.current?.apparent_temperature} °C</p>
-              <p>Min: {weatherData?.daily?.temperature_2m_min[0]} °C</p>
-              <p>Max: {weatherData?.daily?.temperature_2m_max[0]} °C</p>
               <p>Pressure: {weatherData?.current?.surface_pressure} hPa</p>
               <p>Relative humidity: {weatherData?.current?.relative_humidity_2m} %</p>
               <p>Wind speed: {weatherData?.current?.wind_speed_10m} km/h</p>
