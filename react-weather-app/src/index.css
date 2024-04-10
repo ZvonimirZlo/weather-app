@@ -98,7 +98,8 @@ button:hover {
 
 
 @media (max-width: 425px){
-  .container{
+  .container {
     width: 100vw;
+    height: 100vh;
   }
 }

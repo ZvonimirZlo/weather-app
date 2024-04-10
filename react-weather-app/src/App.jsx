@@ -27,7 +27,7 @@ function App() {
       .then(data => setWeatherData(data))
       .catch(error => console.log(error))
   }
-  // console.log(weatherData);
+  console.log(weatherData);
 
   useEffect(() => {
     setCountries(
