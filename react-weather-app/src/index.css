@@ -10,8 +10,9 @@ body {
 }
 
 .app {
-  width: 100vw;
-  height: 100vh;
+  position: relative;
+  min-height: 100vh;
+  min-width: 100vw;
   background: center/cover no-repeat;
   display: flex;
   align-items: center;
@@ -20,6 +21,7 @@ body {
   animation: fadeInAnimation ease 1s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
+  padding-bottom: 2.5rem;
 }
 
 @keyframes fadeInAnimation {
@@ -97,6 +99,16 @@ button:hover {
   font-weight: bold;
 }
 
+.footer {
+  text-align: center;
+  color: white;
+  font-size: 12px;
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  height: 2.5rem;
+}
+
 
 @media (max-width: 605px){
   .container {
@@ -106,7 +118,7 @@ button:hover {
   }
   .app {
     width: auto;
-    height: 100vh;
+    min-height: 100vh;
     font-size: 1rem;
   }
 }
