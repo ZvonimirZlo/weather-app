@@ -66,10 +66,12 @@ button:hover {
   padding: 5px;
   text-align: center;
   margin-bottom: 2.5rem;
+  padding: 1rem;
 }
 
 .data {
   color: white;
+  font-weight: bold;
   background: transparent;
 }
 
