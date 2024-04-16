@@ -15,7 +15,7 @@ App that shows the local weather. Select country and city and click "Get Weather
 <p>
   <img src='https://github.com/ZvonimirZlo/weather-app/assets/104101182/97a1d07a-7a5c-4cae-a251-de7d78ae6e81' width="400">
 </p>
-<p>Access my app at: <a href='https://react-weather-app-zlo.netlify.app'>https://react-weather-app-zlo.netlify.app</a></p>
+<p>Live demo at: <a href='https://react-weather-app-zlo.netlify.app'>https://react-weather-app-zlo.netlify.app</a></p>
 
 ## API
 I've used <a href='https://open-meteo.com'>Open Meteo API</a>
