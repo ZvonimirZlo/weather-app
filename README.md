@@ -9,7 +9,7 @@
 - [Setup](#setup)
 
 ## About The App
-App that shows the local weather. Select country and city and click "Get Weather" to get current weather data like temperature, weather description, min and max temperarure, pressure, humidity...
+App that shows local weather. Select country and city and click "Get Weather" to get current weather data like temperature, weather description, min and max temperarure, pressure, humidity...
 
 ## Screenshots
 <p>
