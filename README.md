@@ -21,7 +21,7 @@ App that shows local weather. Select country and city and click "Get Weather" to
 I've used <a href='https://open-meteo.com'>Open Meteo API</a>
 
 ## Technologies
-I've used `React + Vite`, `Css`, `Html`, `country-state-city`, `React Select`
+I've used `React + Vite`, `Css`, `Html`
 
 ## Setup
 - download or clone the repository
