@@ -1,5 +1,4 @@
-<h1 align='center'>React Weather App</h1>
-<br>
+# React Weather App
 
 ## Table of Content:
 
